@@ -1,0 +1,11 @@
+name = "SvelteKit-Passkeys"
+compatibility_date = "2024-12-09"
+
+main = "./.cloudflare/worker.js"
+workers_dev = false
+
+site.bucket = "./.cloudflare/public"
+
+build.command = "bun run build"
+
+compatibility_flags = [ "nodejs_compat" ]
