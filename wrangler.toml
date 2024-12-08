@@ -1,8 +1,7 @@
-name = "SvelteKit-Passkeys"
-compatibility_date = "2024-12-09"
+name = "sveltekit-passkeys"
+compatibility_date = "2024-12-08"
 
 main = "./.cloudflare/worker.js"
-workers_dev = false
 
 site.bucket = "./.cloudflare/public"
 
@@ -14,3 +13,7 @@ compatibility_flags = [ "nodejs_compat" ]
 binding = "DB" # i.e. available in your Worker on env.DB
 database_name = "sveltekit-passkeys"
 database_id = "9fcc4ee4-a6e3-4934-a60c-d9aa6ec276c1"
+
+[[kv_namespaces]]
+binding = "session"
+id = "28c9afa44fb64f3290271107d85e05f5"
