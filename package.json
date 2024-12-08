@@ -20,6 +20,8 @@
     "drizzle-orm": "^0.37.0",
     "svelte": "^5.0.0",
     "svelte-check": "^4.0.0",
+    "svelte-kit-connect-cloudflare-kv": "^0.1.0",
+    "svelte-kit-sessions": "^0.4.0",
     "typescript": "^5.0.0",
     "vite": "^6.0.0"
   }
