@@ -1,13 +1,15 @@
 <script lang="ts">
   import type { VerifiedRegistrationResponse } from '@simplewebauthn/server';
   import type { PublicKeyCredentialRequestOptionsJSON } from '@simplewebauthn/types';
-  import { is, type InferSelectModel } from 'drizzle-orm';
+  import { type InferSelectModel } from 'drizzle-orm';
   import { invalidateAll } from '$app/navigation';
   import { users } from '$lib/db/schema';
   import { startAuthentication } from '@simplewebauthn/browser';
 
   const { user }: { user: InferSelectModel<typeof users> | undefined } =
     $props();
+
+  let isProcessing = $state(false);
 
   async function login() {
     isProcessing = true;
@@ -48,14 +50,12 @@
     await invalidateAll();
     isProcessing = false;
   }
-
-  let isProcessing = $state(false);
 </script>
 
 {#if isProcessing}
-  <span>処理中...</span>
+  <button disabled>処理中…</button>
 {:else if user?.id}
-  <button onclick={logout}>ログアウトする</button>
+  <button onclick={logout}>ログアウト</button>
 {:else}
-  <button onclick={login}>ログインする</button>
+  <button onclick={login}>ログイン</button>
 {/if}

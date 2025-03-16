@@ -21,6 +21,7 @@ database_id = "8242adb3-9071-42f2-a3ce-ff48f3ff4d81"
 [[kv_namespaces]]
 binding = "session"
 id = "d3d52a4ffe894141afc893fa83568dff"
+preview_id = "ac4cdc1fce6f4a7db3ba320793e45ce3"
 
 [route]
 pattern = "phperkaigi-2025-try-passkey.hibiki-cube.dev"

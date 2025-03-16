@@ -26,6 +26,7 @@
     "svelte-check": "^4.1.5",
     "svelte-kit-connect-cloudflare-kv": "^0.1.1",
     "svelte-kit-sessions": "^0.4.0",
+    "svelte-preprocess-budoux": "^1.0.2",
     "typescript": "^5.8.2",
     "vite": "^6.2.2",
     "wrangler": "^4.0.0"

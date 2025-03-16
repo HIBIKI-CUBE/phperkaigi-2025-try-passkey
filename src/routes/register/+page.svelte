@@ -5,10 +5,13 @@
   import { startRegistration } from '@simplewebauthn/browser';
 
   let username = $state('');
+  let isProcessing = $state(false);
+
   async function createPasskey() {
     if (username === '') {
       return;
     }
+    isProcessing = true;
     const { options } = await (await fetch('/api/auth/register', {
       method: 'POST',
       body: JSON.stringify({ username }),
@@ -34,14 +37,33 @@
 
     if (verificationJSON.verified) {
       await invalidateAll();
+      isProcessing = false;
       goto('/');
     }
   }
 </script>
 
-<form action="">
-  <label>ユーザー名
-    <input type='text' required bind:value={username}>
-  </label>
-  <button onclick={createPasskey} disabled={username === ''}>登録</button>
-</form>
+<section>
+  <h2>パスキーの新規登録</h2>
+  <article data-budoux>
+    <p>このページではパスキーを新しく作成できます。</p>
+    <p>アカウントを識別できるようにするために、ユーザー名を入力した上で登録ボタンを押してください。</p>
+  </article>
+  <form action="" onsubmit={createPasskey}>
+    <label>ユーザー名
+      <input type='text' required bind:value={username}>
+    </label>
+    {#if isProcessing}
+      <button disabled>処理中…</button>
+    {:else}
+      <button onclick={createPasskey} disabled={username === ''}>登録</button>
+    {/if}
+  </form>
+  <a href="/">トップに戻る</a>
+</section>
+
+<style lang="scss">
+  form{
+    margin-block: 1em;
+  }
+</style>
