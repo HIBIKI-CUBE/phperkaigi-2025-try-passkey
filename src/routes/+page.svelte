@@ -10,3 +10,7 @@
 {/if}
 
 <AuthButton user={layout.data.user} />
+
+<style lang="scss">
+  
+</style>

@@ -21,6 +21,7 @@
     "dotenv": "^16.4.7",
     "drizzle-kit": "^0.30.5",
     "drizzle-orm": "^0.40.0",
+    "sass-embedded": "^1.85.1",
     "svelte": "^5.23.0",
     "svelte-check": "^4.1.5",
     "svelte-kit-connect-cloudflare-kv": "^0.1.1",
