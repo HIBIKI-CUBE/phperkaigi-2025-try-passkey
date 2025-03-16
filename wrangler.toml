@@ -1,5 +1,5 @@
-name = "sveltekit-passkeys"
-compatibility_date = "2024-12-08"
+name = "phperkaigi-2025-try-passkey"
+compatibility_date = "2024-12-15"
 
 main = "./.cloudflare/worker.js"
 
@@ -9,11 +9,24 @@ build.command = "bun run build"
 
 compatibility_flags = [ "nodejs_compat" ]
 
+[observability]
+enabled = true
+head_sampling_rate = 1
+
 [[d1_databases]]
-binding = "DB" # i.e. available in your Worker on env.DB
-database_name = "sveltekit-passkeys"
-database_id = "9fcc4ee4-a6e3-4934-a60c-d9aa6ec276c1"
+binding = "DB"
+database_name = "phperkaigi-2025-try-passkey"
+database_id = "8242adb3-9071-42f2-a3ce-ff48f3ff4d81"
 
 [[kv_namespaces]]
 binding = "session"
-id = "28c9afa44fb64f3290271107d85e05f5"
+id = "d3d52a4ffe894141afc893fa83568dff"
+
+[route]
+pattern = "phperkaigi-2025-try-passkey.hibiki-cube.dev"
+custom_domain = true
+
+[vars]
+PUBLIC_RP_NAME ="PhperKaigi 2025 Try Passkey"
+PUBLIC_RP_ID = "phperkaigi-2025-try-passkey.hibiki-cube.dev"
+PUBLIC_ORIGIN ="https://phperkaigi-2025-try-passkey.hibiki-cube.dev"

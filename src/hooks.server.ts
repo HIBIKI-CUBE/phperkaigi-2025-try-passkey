@@ -1,6 +1,5 @@
 import type { Handle } from '@sveltejs/kit';
-import type { SessionData as OriginalSessionData } from 'svelte-kit-sessions';
-import { env } from '$env/dynamic/private';
+import { SESSION_SECRET } from '$env/static/private';
 import KvStore from 'svelte-kit-connect-cloudflare-kv';
 import { sveltekitSessionHandle } from 'svelte-kit-sessions';
 
@@ -11,10 +10,6 @@ declare module 'svelte-kit-sessions' {
   }
 }
 
-declare module 'svelte-kit-connect-cloudflare-kv' {
-  interface SessionData extends OriginalSessionData {}
-}
-
 export const handle: Handle = async ({ event, resolve }) => {
   let sessionHandle: Handle | null = null;
 
@@ -22,7 +17,7 @@ export const handle: Handle = async ({ event, resolve }) => {
     // https://kit.svelte.dev/docs/adapter-cloudflare#bindings
     const store = new KvStore({ client: event.platform.env.session });
     sessionHandle = sveltekitSessionHandle({
-      secret: env.SESSION_SECRET,
+      secret: SESSION_SECRET,
       store,
       cookie: {
         maxAge: 3600 * 8,
