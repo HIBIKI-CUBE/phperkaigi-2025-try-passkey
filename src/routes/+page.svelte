@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { PageProps } from './$types';
   import AuthButton from '$lib/components/AuthButton.svelte';
-  import { date } from 'drizzle-orm/mysql-core';
+  import { enhance } from '$app/forms';
 
   const { data }: PageProps = $props();
 
@@ -20,6 +20,8 @@
 
     return format(date);
   };
+
+  let commentInput = $state('');
 </script>
 
 <article>
@@ -62,15 +64,27 @@
     </article>
   </section>
 
-  <section class="comments" data-budoux>
+  <section>
+    <h2>スライド</h2>
+    <iframe
+      title="パスキーでのログインを実装してみよう！ @ PHPerKaigi 2025"
+      src="https://docs.google.com/presentation/d/e/2PACX-1vTEX8MbdzmZkB8FLJbvUUQWrFtX4hgin0gnSU_4oGf6GIhR9nSF9RJgQchfdFKOWUITWyi4jw8GZ7lj/embed?start=false&loop=false&delayms=30000"
+      frameborder="0"
+      width="1440"
+      height="839"
+      allowfullscreen
+    ></iframe>
+  </section>
+
+  <section class="comments">
     <h2>コメント欄</h2>
-    <p>
+    <p data-budoux>
       パスキーでログインをするとここにコメントを残していけるようになります。
     </p>
-    <p class="kome">
+    <p class="kome" data-budoux>
       このコメント欄は、ログインを必要とする機能が動作していることを確認する目的で提供しています。機密情報や個人情報、誹謗中傷などを書き込まないでください。
     </p>
-    <section>
+    <section data-budoux>
       {#each data.comments as comment}
         <div class="comment">
           {comment.owner.name}:
@@ -79,12 +93,17 @@
         </div>
       {/each}
     </section>
-    <form method="POST">
+    <form method="POST" use:enhance>
       <label>
         コメント
-        <input type="text" name="comment" />
+        <input
+          type="text"
+          name="comment"
+          disabled={!data.user}
+          bind:value={commentInput}
+        />
       </label>
-      <button>送信</button>
+      <button disabled={!data.user || !commentInput}>送信</button>
     </form>
   </section>
 </article>
@@ -94,7 +113,16 @@
     margin-bottom: 0.5em;
   }
 
+  section {
+    iframe {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1440 / 839;
+    }
+  }
+
   .comments {
+    margin-block: 1em;
     .kome {
       padding-left: 2ch;
       position: relative;
@@ -115,8 +143,9 @@
         }
       }
     }
-    .comment{
+    .comment {
       display: flex;
+      margin-block: 0.5em;
       span {
         flex: auto;
       }
