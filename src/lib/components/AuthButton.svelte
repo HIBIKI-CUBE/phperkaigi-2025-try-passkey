@@ -36,10 +36,10 @@
 
     if (verificationJSON.verified) {
       await invalidateAll();
-      isProcessing = false;
     } else {
       throw new Error(`Verification failed: ${verificationJSON}`);
     }
+    isProcessing = false;
   }
 
   async function logout() {
