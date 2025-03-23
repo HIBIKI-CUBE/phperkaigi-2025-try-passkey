@@ -18,6 +18,9 @@
   :global(html, body) {
     background: #f2f9ff;
     margin: 0;
+    font-family: -apple-system, 'BlinkMacSystemFont',
+      'Hiragino Kaku Gothic ProN', 'メイリオ', 'Helvetica Neue', 'Helvetica',
+      'Arial', sans-serif;
   }
 
   main {

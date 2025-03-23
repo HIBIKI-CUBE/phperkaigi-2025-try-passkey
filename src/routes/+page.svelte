@@ -118,7 +118,7 @@
   ruby {
     ruby-align: center;
     rt {
-      margin-bottom: 0.5em;
+      margin-block: 0.25em;
     }
   }
 
