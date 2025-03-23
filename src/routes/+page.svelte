@@ -2,6 +2,7 @@
   import type { PageProps } from './$types';
   import AuthButton from '$lib/components/AuthButton.svelte';
   import { enhance } from '$app/forms';
+  import AuthForm from '$lib/components/AuthForm.svelte';
 
   const { data }: PageProps = $props();
 
@@ -53,10 +54,15 @@
           から新しくパスキーを作ってください。
         </p>
         <p>
-          パスキーを使ってログインするには <ruby>
-            <AuthButton user={data.user} /> <rp>(</rp><rt>ログインボタン</rt><rp
-              >)</rp
-            >
+          パスキーを使ってログインするには
+          <ruby>
+            <AuthForm />
+            <rp>(</rp><rt>ユーザー名入力欄</rt><rp>)</rp>
+          </ruby>
+          にフォーカスするか、
+          <ruby>
+            <AuthButton />
+            <rp>(</rp><rt>ログインボタン</rt><rp>)</rp>
           </ruby>
           を押してください
         </p>
@@ -109,8 +115,11 @@
 </article>
 
 <style lang="scss">
-  rt {
-    margin-bottom: 0.5em;
+  ruby {
+    ruby-align: center;
+    rt {
+      margin-bottom: 0.5em;
+    }
   }
 
   section {
@@ -118,7 +127,7 @@
       width: 100%;
       height: auto;
       aspect-ratio: 1440 / 839;
-      margin-block: .5em;
+      margin-block: 0.5em;
     }
   }
 

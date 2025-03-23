@@ -5,14 +5,12 @@
   import { invalidateAll } from '$app/navigation';
   import { users } from '$lib/db/schema';
   import { startAuthentication } from '@simplewebauthn/browser';
+  import { loginState } from '$lib/stores/createLoginState.svelte';
 
-  const { user }: { user: InferSelectModel<typeof users> | undefined } =
-    $props();
-
-  let isProcessing = $state(false);
+  const { user }: { user?: InferSelectModel<typeof users> } = $props();
 
   async function login() {
-    isProcessing = true;
+    loginState.start();
     const { options } = (await (await fetch(`/api/auth/login`))
       .json()
       .catch((err) => {
@@ -39,20 +37,20 @@
     } else {
       throw new Error(`Verification failed: ${verificationJSON}`);
     }
-    isProcessing = false;
+    loginState.finish();
   }
 
   async function logout() {
-    isProcessing = true;
+    loginState.start();
     await fetch('/api/auth/logout', {
       credentials: 'same-origin',
     });
     await invalidateAll();
-    isProcessing = false;
+    loginState.finish();
   }
 </script>
 
-{#if isProcessing}
+{#if loginState.isProcessing}
   <button disabled>処理中…</button>
 {:else if user?.id}
   <button onclick={logout}>ログアウト</button>
