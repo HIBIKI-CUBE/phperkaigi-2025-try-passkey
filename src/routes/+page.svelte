@@ -72,14 +72,7 @@
 
   <section>
     <h2>スライド</h2>
-    <iframe
-      title="パスキーでのログインを実装してみよう！ @ PHPerKaigi 2025"
-      src="https://docs.google.com/presentation/d/e/2PACX-1vTEX8MbdzmZkB8FLJbvUUQWrFtX4hgin0gnSU_4oGf6GIhR9nSF9RJgQchfdFKOWUITWyi4jw8GZ7lj/embed?start=false&loop=false&delayms=30000"
-      frameborder="0"
-      width="1440"
-      height="839"
-      allowfullscreen
-    ></iframe>
+    <iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/e25f6c83e6cb40a8a0036c640a5f62c2" title="パスキーでのログインを 実装してみよう！" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"></iframe>
   </section>
 
   <section class="comments">
