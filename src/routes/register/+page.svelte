@@ -51,7 +51,7 @@
   </article>
   <form action="" onsubmit={createPasskey}>
     <label>ユーザー名
-      <input type='text' required bind:value={username}>
+      <input type='text' autocomplete="username" required bind:value={username}>
     </label>
     {#if isProcessing}
       <button disabled>処理中…</button>
